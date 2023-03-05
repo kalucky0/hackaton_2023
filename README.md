@@ -1,41 +1,16 @@
-# create-svelte
+# hackaton
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A new Flutter project.
 
-## Creating a project
+## Getting Started
 
-If you're seeing this, you've probably already done this step. Congrats!
+This project is a starting point for a Flutter application.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+A few resources to get you started if this is your first Flutter project:
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-
-https://icon.kitchen/i/H4sIAAAAAAAAAzVOuQ6DMAz9F3dlYKooK59QtqqDSQxETTDN0UOIf68DZfH1Li%2FwQpsoQL2ARv9oR3IEdY82UAH90H5nWUFZM6OPkE%2FNfxZFIGmgqcdkM2gUT3JAr0YTScXkCdYCuqFhy16QU1lezlUl1G5o6bMRxCceIzgOaNQuuo64hYdnwt3IsU42P3sDnLRno3MoB6lv6uC%2B%2FgAk6U4%2BzwAAAA%3D%3D
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
