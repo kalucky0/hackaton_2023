@@ -7,8 +7,8 @@ class PlaceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       snap: true,
-      snapSizes: const [0.05, 0.25, 1.0],
-      minChildSize: 0.05,
+      snapSizes: const [0.5, 1.0],
+      minChildSize: 0.4,
       builder: (BuildContext context, scrollController) {
         return Container(
           decoration: const BoxDecoration(

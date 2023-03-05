@@ -41,7 +41,18 @@ class HomeScreen extends StatelessWidget {
                   bottom: 20,
                   left: 20,
                   child: Button(
-                    onTap: () {},
+                    onTap: () {
+                      print("Skanuj");
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        barrierColor: Colors.transparent,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const PlaceScreen();
+                        },
+                      );
+                    },
                     width: MediaQuery.of(context).size.width - 40,
                     height: 50,
                     child: Row(
@@ -92,7 +103,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                PlaceScreen(),
               ],
             ),
           );
