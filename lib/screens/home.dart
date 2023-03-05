@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackaton/screens/place.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../cubits/home_cubit.dart';
+import '../main.dart';
 import '../widgets/button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,8 +24,16 @@ class HomeScreen extends StatelessWidget {
             body: Stack(
               children: [
                 Positioned.fill(
-                  child: Container(
-                    color: const Color(0xFFdddfc2),
+                  child: MapboxMap(
+                    accessToken: mapsAccessToken,
+                    initialCameraPosition: const CameraPosition(
+                      target: LatLng(50.061, 19.937),
+                      zoom: 14.0,
+                    ),
+                    attributionButtonPosition:
+                        AttributionButtonPosition.BottomRight,
+                    attributionButtonMargins: const Point(30, 40),
+                    logoViewMargins: const Point(30, 40),
                   ),
                 ),
                 Positioned(
@@ -59,27 +71,29 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   height: 45,
-                  top: 20,
+                  top: 20 + MediaQuery.of(context).padding.top,
                   left: 20,
                   child: Button(
+                    onTap: () {},
                     width: 45,
                     height: 45,
-                    child: Icon(
+                    child: const Icon(
                       MdiIcons.plus,
                       color: Colors.black54,
                     ),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   height: 45,
-                  top: 20,
+                  top: 20 + MediaQuery.of(context).padding.top,
                   right: 20,
                   child: Button(
                     width: 45,
                     height: 45,
-                    child: Icon(
+                    onTap: () {},
+                    child: const Icon(
                       MdiIcons.accountOutline,
                       color: Colors.black54,
                     ),
