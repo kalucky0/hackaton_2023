@@ -92,74 +92,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                DraggableScrollableSheet(
-                  snap: true,
-                  snapSizes: const [0.05, 0.25, 1.0],
-                  minChildSize: 0.05,
-                  builder: (BuildContext context,
-                      ScrollController scrollController) {
-                    return Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                        ),
-                      ),
-                      child: ListView(
-                        controller: scrollController,
-                        children: [
-                          Stack(
-                            children: [
-                              Image.network('https://picsum.photos/1280/720'),
-                              Positioned.fill(
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Colors.transparent,
-                                        Colors.transparent,
-                                        Colors.black54,
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const Positioned(
-                                bottom: 20,
-                                child: Text(
-                                    "hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdh",
-                                    overflow: TextOverflow.fade,
-                                    maxLines: 1,
-                                    softWrap: false,
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                ),
-                              ),
-                              Positioned(
-                                child: Center(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.black38,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    width: 100,
-                                    height: 5,
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                PlaceScreen(),
               ],
             ),
           );
