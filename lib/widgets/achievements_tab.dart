@@ -1,12 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AchievementModel {
   final String name;
   final String icon;
+  final Color color;
 
   const AchievementModel({
     required this.name,
     required this.icon,
+    required this.color,
   });
 }
 
@@ -17,42 +21,52 @@ class AchievementsTab extends StatelessWidget {
     AchievementModel(
       name: 'New Yorker',
       icon: 'https://img.icons8.com/fluency/256/new-york.png',
+      color: Color(0xFF35c2ef),
     ),
     AchievementModel(
       name: 'Art Lover',
       icon: 'https://img.icons8.com/fluency/256/easel.png',
+      color: Color(0xFF50e6fe),
     ),
     AchievementModel(
       name: 'Foodie',
       icon: 'https://img.icons8.com/fluency/256/food.png',
+      color: Color(0xFF189ce4),
     ),
     AchievementModel(
       name: 'Nature Lover',
       icon: 'https://img.icons8.com/fluency/256/nature.png',
+      color: Color(0xFF159b56),
     ),
     AchievementModel(
       name: 'History Buff',
       icon: 'https://img.icons8.com/fluency/256/greek-pillar-base.png',
+      color: Color(0xFFa8bdc4),
     ),
     AchievementModel(
       name: 'Oktoberfest Fan',
       icon: 'https://img.icons8.com/fluency/256/bavarian-beer-mug.png',
+      color: Color(0xFFffc307),
     ),
     AchievementModel(
       name: 'Hiker',
       icon: 'https://img.icons8.com/fluency/256/alps.png',
+      color: Color(0xFF0b9a50),
     ),
     AchievementModel(
       name: 'Contributor',
       icon: 'https://img.icons8.com/fluency/256/pencil-tip.png',
+      color: Color(0xFFedbe00),
     ),
     AchievementModel(
       name: 'Explorer',
       icon: 'https://img.icons8.com/fluency/256/compass.png',
+      color: Color(0xFFfb4e14),
     ),
     AchievementModel(
       name: 'Photographer',
       icon: 'https://img.icons8.com/fluency/256/camera.png',
+      color: Color(0xFFba8eef),
     ),
   ];
 
@@ -69,37 +83,47 @@ class AchievementsTab extends StatelessWidget {
           crossAxisCount: 3,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
+          childAspectRatio: 0.98,
         ),
         itemBuilder: (context, index) {
           return _achievementBadge(
             context,
             achievements[index].name,
             achievements[index].icon,
+            Random().nextInt(100),
+            achievements[index].color,
           );
         },
       ),
     );
   }
 
-  Widget _achievementBadge(BuildContext context, String name, String icon) {
+  Widget _achievementBadge(BuildContext context, String name, String icon,
+      int progress, Color color) {
     return Column(
       children: [
-        Container(
-          clipBehavior: Clip.antiAlias,
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(50.0),
-            border: Border.all(
-              color: Colors.grey.withOpacity(0.2),
-              width: 2,
-            ),
+        CustomPaint(
+          painter: PieChartPainter(
+            value: progress,
+            maxValue: 100,
+            color: color,
           ),
-          child: Image.network(
-            icon,
-            width: 60,
-            height: 60,
-            fit: BoxFit.cover,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              child: Image.network(
+                icon,
+                width: 60,
+                height: 60,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
         Padding(
@@ -107,7 +131,7 @@ class AchievementsTab extends StatelessWidget {
             top: 10,
             left: 20,
             right: 20,
-            bottom: 5,
+            bottom: 6,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,5 +149,51 @@ class AchievementsTab extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class PieChartPainter extends CustomPainter {
+  final int value;
+  final int maxValue;
+  final Color color;
+
+  PieChartPainter({
+    required this.value,
+    required this.maxValue,
+    required this.color,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Rect rect = Offset.zero & size;
+
+    double startAngle = -pi / 2;
+    double endAngle = 0.0;
+
+    double arcAngle = 2 * pi * value / maxValue;
+
+    canvas.drawArc(
+      rect,
+      endAngle,
+      2 * pi,
+      true,
+      Paint()..color = Colors.grey.withOpacity(0.2),
+    );
+
+    canvas.drawArc(
+      rect,
+      startAngle,
+      arcAngle,
+      true,
+      Paint()..color = color,
+    );
+
+    startAngle = endAngle;
+    endAngle += arcAngle;
+  }
+
+  @override
+  bool shouldRepaint(PieChartPainter oldDelegate) {
+    return value != oldDelegate.value || maxValue != oldDelegate.maxValue;
   }
 }
