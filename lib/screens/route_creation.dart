@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackaton/cubits/route_creation_cubit.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class RouteCreation extends StatelessWidget {
   const RouteCreation({Key? key}) : super(key: key);
@@ -11,7 +10,7 @@ class RouteCreation extends StatelessWidget {
     return DraggableScrollableSheet(
       snap: true,
       snapSizes: const [1.0],
-      minChildSize: 0.9,
+      minChildSize: 0.8,
       initialChildSize: 1.0,
       builder: (BuildContext context, scrollController) {
         return BlocProvider(
@@ -26,6 +25,7 @@ class RouteCreation extends StatelessWidget {
               ),
             ),
             child: ListView(
+              controller: scrollController,
               children: [
                 const Padding(
                   padding: EdgeInsets.only(

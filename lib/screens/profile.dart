@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
     return DraggableScrollableSheet(
       snap: true,
       snapSizes: const [1.0],
-      minChildSize: 0.9,
+      minChildSize: 0.8,
       initialChildSize: 1.0,
       builder: (BuildContext context, scrollController) {
         return BlocProvider(
