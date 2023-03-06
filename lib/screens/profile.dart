@@ -75,14 +75,14 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 10),
                             const Text(
-                              "Username",
+                              "Andrzej",
                               style: TextStyle(
                                 fontSize: 22,
                                 color: Colors.white,
                               ),
                             ),
                             const Text(
-                              "Level 5 • 1435 points",
+                              "Poziom 5 • 1435 punktów",
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white60,
@@ -109,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           child: const Text(
-                            "Visited",
+                            "Odwiedzone",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -132,7 +132,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           child: const Text(
-                            "Profile",
+                            "Profil",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -147,7 +147,7 @@ class ProfileScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           width: MediaQuery.of(context).size.width / 3,
                           child: const Text(
-                            "Achievements",
+                            "Osiągnięcia",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
