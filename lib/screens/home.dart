@@ -205,7 +205,11 @@ class HomeScreen extends StatelessWidget {
                         barrierColor: Colors.transparent,
                         context: context,
                         builder: (BuildContext context) {
-                          return const ProfileScreen();
+                          return const ProfileScreen(
+                            username: 'Andrzej',
+                            points: 1533,
+                            id: 2137,
+                          );
                         },
                       );
                     },

@@ -1,12 +1,24 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackaton/cubits/profile_cubit.dart';
 import 'package:hackaton/widgets/achievements_tab.dart';
 import 'package:hackaton/widgets/profile_tab.dart';
 import 'package:hackaton/widgets/visited_tab.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final String username;
+  final int points;
+  final int id;
+
+  const ProfileScreen({
+    required this.username,
+    required this.points,
+    required this.id,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Image.network('https://picsum.photos/1280/720'),
+                      Image.network('https://picsum.photos/1280/720?$id'),
                       Positioned.fill(
                         child: Container(
                           decoration: const BoxDecoration(
@@ -49,6 +61,14 @@ class ProfileScreen extends StatelessWidget {
                               ],
                             ),
                           ),
+                        ),
+                      ),
+                      const Positioned(
+                        top: 40,
+                        right: 20,
+                        child: Icon(
+                          MdiIcons.pencilOutline,
+                          color: Colors.white,
                         ),
                       ),
                       Positioned.fill(
@@ -67,7 +87,7 @@ class ProfileScreen extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(60),
                                 child: Image.network(
-                                  'https://picsum.photos/200/200',
+                                  'https://picsum.photos/200/200?$id',
                                   width: 88,
                                   height: 88,
                                 ),
@@ -81,12 +101,11 @@ class ProfileScreen extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            const Text(
-                              "Poziom 5 • 1435 punktów",
+                            Text(
+                              "Poziom ${(1 + sqrt(points / 100)).floor()} • $points punktów",
                               style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white60,
-                              ),
+                                  fontSize: 14,
+                                  color: Colors.white.withOpacity(.87)),
                             ),
                           ],
                         ),
