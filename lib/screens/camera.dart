@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubits/camera_cubit.dart';
+import 'scanned.dart';
 
 class CameraScreen extends StatelessWidget {
   const CameraScreen({Key? key}) : super(key: key);
@@ -15,6 +16,12 @@ class CameraScreen extends StatelessWidget {
       body: GestureDetector(
         onTap: () {
           Navigator.pop(context);
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (context, _, __) => const ScannedScreen(),
+              opaque: false,
+            ),
+          );
         },
         child: Stack(
           children: [

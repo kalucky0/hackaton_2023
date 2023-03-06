@@ -16,6 +16,7 @@ dependencies:
   camera: ^0.10.3+2
   material_design_icons_flutter: ^6.0.7096
   geolocator: ^9.0.2
+  confetti: ^0.7.0
   flutter:
     sdk: flutter
 
