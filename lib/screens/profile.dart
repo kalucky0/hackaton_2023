@@ -47,7 +47,12 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Image.network('https://picsum.photos/1280/720?$id'),
+                      Image.network(
+                        'https://picsum.photos/1280/720?$id',
+                        height: 240,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
                       Positioned.fill(
                         child: Container(
                           decoration: const BoxDecoration(
@@ -112,6 +117,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 2),
                   Row(
                     children: [
                       GestureDetector(
@@ -121,9 +127,9 @@ class ProfileScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width / 3,
                           decoration: BoxDecoration(
                             border: Border(
-                              right: BorderSide(
-                                color: Colors.grey.withOpacity(0.2),
-                                width: 1,
+                              bottom: BorderSide(
+                                color: state.tab == 0 ? Colors.grey.withOpacity(0.25) : Colors.transparent,
+                                width: 3,
                               ),
                             ),
                           ),
@@ -144,9 +150,9 @@ class ProfileScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width / 3,
                           decoration: BoxDecoration(
                             border: Border(
-                              right: BorderSide(
-                                color: Colors.grey.withOpacity(0.2),
-                                width: 1,
+                              bottom: BorderSide(
+                                color: state.tab == 1 ? Colors.grey.withOpacity(0.25) : Colors.transparent,
+                                width: 3,
                               ),
                             ),
                           ),
@@ -165,6 +171,14 @@ class ProfileScreen extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           width: MediaQuery.of(context).size.width / 3,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: state.tab == 2 ? Colors.grey.withOpacity(0.25) : Colors.transparent,
+                                width: 3,
+                              ),
+                            ),
+                          ),
                           child: const Text(
                             "Osiągnięcia",
                             textAlign: TextAlign.center,
