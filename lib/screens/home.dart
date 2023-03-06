@@ -131,35 +131,49 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: categories.length,
                       itemBuilder: (context, index) {
+                        final cubit = context.read<HomeCubit>();
                         final category = categories[index];
                         return Padding(
                           padding: EdgeInsets.only(
                             left: index == 0 ? 20 : 0,
                             right: index == categories.length - 1 ? 20 : 10,
                           ),
-                          child: Chip(
-                            label: Row(
-                              children: [
-                                Icon(
-                                  category.icon,
-                                  color: Colors.black.withOpacity(.6),
-                                  size: 20,
-                                ),
-                                const SizedBox(width: 5),
-                                Text(
-                                  category.name,
-                                  style: TextStyle(
-                                    color: Colors.black.withOpacity(.6),
+                          child: GestureDetector(
+                            onTap: () => cubit.setChip(index),
+                            child: Chip(
+                              backgroundColor: index == state.selectedChip
+                                  ? const Color(0xFF37373C)
+                                  : Colors.white,
+                              label: Row(
+                                children: [
+                                  Icon(
+                                    category.icon,
+                                    color: index == state.selectedChip
+                                        ? Colors.white
+                                        : Colors.black.withOpacity(.6),
+                                    size: 20,
                                   ),
-                                ),
-                              ],
-                            ),
-                            backgroundColor: Colors.white,
-                            elevation: 2,
-                            shadowColor: Colors.black,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 5,
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    category.name,
+                                    style: TextStyle(
+                                      color: index == state.selectedChip
+                                          ? Colors.white
+                                          : Colors.black.withOpacity(.6),
+                                      fontWeight: index == state.selectedChip
+                                          ? FontWeight.w600
+                                          : FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              // backgroundColor: Colors.white,
+                              elevation: 2,
+                              shadowColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
                             ),
                           ),
                         );

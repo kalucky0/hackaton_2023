@@ -4,7 +4,9 @@ import 'package:meta/meta.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(const HomeInitial(0));
+  HomeCubit() : super(const HomeInitial());
 
-  void increment() => emit(HomeInitial(state.counter + 1));
+  void setChip(int index) {
+    emit(HomeUpdate(index));
+  }
 }

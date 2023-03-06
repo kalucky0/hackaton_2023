@@ -2,11 +2,15 @@ part of 'home_cubit.dart';
 
 @immutable
 abstract class HomeState {
-  const HomeState(this.counter);
+  const HomeState(this.selectedChip);
 
-  final int counter;
+  final int selectedChip;
 }
 
 class HomeInitial extends HomeState {
-  const HomeInitial(int counter) : super(counter);
+  const HomeInitial() : super(0);
+}
+
+class HomeUpdate extends HomeState {
+  const HomeUpdate(super.selectedChip);
 }
