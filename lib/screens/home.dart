@@ -59,6 +59,7 @@ class HomeScreen extends StatelessWidget {
     LatLng(50.086721, 19.994021),
     LatLng(50.085388, 19.997405),
     LatLng(50.083779, 19.995888),
+    LatLng(50.082190, 19.997223),
   ];
 
   @override
@@ -226,7 +227,12 @@ class HomeScreen extends StatelessWidget {
     {
       final ByteData bytes = await rootBundle.load("assets/pin.png");
       final Uint8List list = bytes.buffer.asUint8List();
-      await controller.addImage("assetImage", list);
+      await controller.addImage("pin", list);
+    }
+    {
+      final ByteData bytes = await rootBundle.load("assets/pin_gray.png");
+      final Uint8List list = bytes.buffer.asUint8List();
+      await controller.addImage("pin_gray", list);
     }
     {
       final ByteData bytes = await rootBundle.load("assets/dot.png");
@@ -234,11 +240,13 @@ class HomeScreen extends StatelessWidget {
       await controller.addImage("dot", list);
     }
 
+    int i = 0;
     for (final point in points) {
+      i++;
       controller.addSymbol(
         SymbolOptions(
           geometry: point,
-          iconImage: 'assetImage',
+          iconImage: i > 2 ? 'pin' : 'pin_gray',
           iconSize: 0.33,
           iconOffset: const Offset(0, -50),
         ),

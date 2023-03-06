@@ -34,4 +34,5 @@ flutter:
     - assets/checkmark.json
     - assets/blue-checkmark.json
     - assets/pin.png
+    - assets/pin_gray.png
     - assets/dot.png
