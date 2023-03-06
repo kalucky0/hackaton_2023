@@ -260,8 +260,8 @@ class HomeScreen extends StatelessWidget {
     final marker = await controller.addCircle(
       CircleOptions(
         circleRadius: 6,
-        circleColor: '#3bb2d0',
-        circleStrokeColor: '#3bb2d0',
+        circleColor: '#3197ed',
+        circleStrokeColor: '#3197ed',
         circleStrokeOpacity: .5,
         circleStrokeWidth: 2,
         geometry: LatLng(position.latitude, position.longitude),
@@ -282,11 +282,11 @@ class HomeScreen extends StatelessWidget {
       controller.updateCircle(
         marker,
         CircleOptions(
-          circleRadius: 10,
-          circleColor: '#3bb2d0',
-          circleStrokeColor: '#3bb2d0',
+          circleRadius: 6,
+          circleColor: '#3197ed',
+          circleStrokeColor: '#3197ed',
           circleStrokeOpacity: .5,
-          circleStrokeWidth: 3,
+          circleStrokeWidth: 2,
           geometry: LatLng(position.latitude, position.longitude),
         ),
       );
