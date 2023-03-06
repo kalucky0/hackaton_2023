@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackaton/screens/camera.dart';
 import 'package:hackaton/screens/place.dart';
 import 'package:hackaton/screens/profile.dart';
+import 'package:hackaton/screens/route_creation.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -87,7 +88,17 @@ class HomeScreen extends StatelessWidget {
                   top: 20 + MediaQuery.of(context).padding.top,
                   left: 20,
                   child: Button(
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        barrierColor: Colors.transparent,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const RouteCreation();
+                        },
+                      );
+                    },
                     width: 45,
                     height: 45,
                     child: const Icon(
