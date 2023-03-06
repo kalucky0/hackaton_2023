@@ -69,14 +69,6 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Positioned(
-                        top: 40,
-                        right: 20,
-                        child: Icon(
-                          MdiIcons.pencilOutline,
-                          color: Colors.white,
-                        ),
-                      ),
                       Positioned.fill(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -116,6 +108,23 @@ class ProfileScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                      if (username == 'Andrzej')
+                        Positioned(
+                          top: 30,
+                          right: 15,
+                          child: IconButton(
+                            icon: const Icon(MdiIcons.pencilOutline),
+                            color: Colors.white,
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return _editProfileDialog(context);
+                                },
+                              );
+                            },
+                          ),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 2),
@@ -211,6 +220,55 @@ class ProfileScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget _editProfileDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text("Edytuj profil"),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 4),
+          TextField(
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Nazwa użytkownika",
+            ),
+            controller: TextEditingController(text: username),
+          ),
+          const SizedBox(height: 20),
+          TextField(
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Email",
+            ),
+            controller: TextEditingController(text: "andrzej1968@gmail.com"),
+          ),
+          const SizedBox(height: 20),
+          TextField(
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: "Hasło",
+            ),
+            obscureText: true,
+            controller: TextEditingController(text: "********"),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text("Anuluj"),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text("Zapisz"),
+        ),
+      ],
     );
   }
 }
