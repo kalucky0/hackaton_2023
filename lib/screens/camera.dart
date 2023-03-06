@@ -28,7 +28,18 @@ class CameraScreen extends StatelessWidget {
             Positioned.fill(
               child: BlocProvider(
                 create: (context) => CameraCubit(),
-                child: BlocBuilder<CameraCubit, CameraState>(
+                child: BlocConsumer<CameraCubit, CameraState>(
+                  listener: (context, state) {
+                    if (state is CameraExit) {
+                      Navigator.pop(context);
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (context, _, __) => const ScannedScreen(),
+                          opaque: false,
+                        ),
+                      );
+                    }
+                  },
                   builder: (context, state) {
                     final cubit = context.read<CameraCubit>();
                     if (state is CameraInitial ||
