@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 16),
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(60),
@@ -79,6 +79,13 @@ class ProfileScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 22,
                                 color: Colors.white,
+                              ),
+                            ),
+                            const Text(
+                              "Level 5 • 1435 points",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white60,
                               ),
                             ),
                           ],
