@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/place.dart';
+
 class Place {
   final String name;
   final String description;
@@ -77,47 +79,63 @@ class VisitedTab extends StatelessWidget {
         left: 12,
         right: 12,
       ),
-      child: Container(
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15.0),
-          border: Border.all(
-            color: Colors.grey.withOpacity(0.2),
-            width: 1,
-          ),
-        ),
-        child: Row(
-          children: [
-            Image.network(
-              image,
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            barrierColor: Colors.black38,
+            context: context,
+            builder: (BuildContext context) {
+              return PlaceScreen(
+                image: image,
+                name: name,
+              );
+            },
+          );
+        },
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.0),
+            border: Border.all(
+              color: Colors.grey.withOpacity(0.2),
+              width: 1,
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      description,
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                  ],
+          ),
+          child: Row(
+            children: [
+              Image.network(
+                image,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        description,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

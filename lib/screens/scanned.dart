@@ -24,7 +24,11 @@ class ScannedScreen extends StatelessWidget {
                 barrierColor: Colors.transparent,
                 context: context,
                 builder: (BuildContext context) {
-                  return const PlaceScreen();
+                  return const PlaceScreen(
+                    image:
+                        'https://lh3.googleusercontent.com/gps-proxy/ALm4wwkXSlNKl7pHIIyV3Hg6HBFtaFH7Pz8xLrCSx-ivjXwFwRToSXTtT0xB6alU3KyXOVBUe2dyjfLc6ds27Ooqzc_cNPZZivxdwOtOX3KsN57pAzUqFY7vfLOECnl16UWTIm1yC_nuG_Stt1Y0uL6gj3-Gk5bZrWjKv7wNsevdfyDUf1qJm0ZtRolF=w408-h271-k-no',
+                    name: 'Bazylika Mariacka',
+                  );
                 },
               );
             }

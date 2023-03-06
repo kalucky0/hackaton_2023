@@ -4,7 +4,14 @@ import 'package:hackaton/widgets/add_comment.dart';
 import 'package:hackaton/widgets/comment.dart';
 
 class PlaceScreen extends StatelessWidget {
-  const PlaceScreen({Key? key}) : super(key: key);
+  final String name;
+  final String image;
+
+  const PlaceScreen({
+    required this.name,
+    required this.image,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +36,7 @@ class PlaceScreen extends StatelessWidget {
               Stack(
                 children: [
                   Image.network(
-                    'https://lh3.googleusercontent.com/gps-proxy/ALm4wwkXSlNKl7pHIIyV3Hg6HBFtaFH7Pz8xLrCSx-ivjXwFwRToSXTtT0xB6alU3KyXOVBUe2dyjfLc6ds27Ooqzc_cNPZZivxdwOtOX3KsN57pAzUqFY7vfLOECnl16UWTIm1yC_nuG_Stt1Y0uL6gj3-Gk5bZrWjKv7wNsevdfyDUf1qJm0ZtRolF=w408-h271-k-no',
+                    image,
                     fit: BoxFit.cover,
                     height: 250,
                     width: double.infinity,
@@ -49,16 +56,16 @@ class PlaceScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     bottom: 20,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Text(
-                        "Bazylika Mariacka",
+                        name,
                         overflow: TextOverflow.fade,
                         maxLines: 1,
                         softWrap: false,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 30,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
