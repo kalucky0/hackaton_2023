@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hackaton/screens/place.dart';
+import 'package:hackaton/screens/profile.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -42,7 +43,6 @@ class HomeScreen extends StatelessWidget {
                   left: 20,
                   child: Button(
                     onTap: () {
-                      print("Skanuj");
                       showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: Colors.transparent,
@@ -96,7 +96,17 @@ class HomeScreen extends StatelessWidget {
                   child: Button(
                     width: 45,
                     height: 45,
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        barrierColor: Colors.transparent,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const ProfileScreen();
+                        },
+                      );
+                    },
                     child: const Icon(
                       MdiIcons.accountOutline,
                       color: Colors.black54,

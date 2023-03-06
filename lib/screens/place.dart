@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackaton/widgets/addComment.dart';
+import 'package:hackaton/widgets/add_comment.dart';
 import 'package:hackaton/widgets/comment.dart';
 
 class PlaceScreen extends StatelessWidget {
@@ -17,8 +17,8 @@ class PlaceScreen extends StatelessWidget {
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
             ),
           ),
           child: ListView(
@@ -79,7 +79,7 @@ class PlaceScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               const Padding(
