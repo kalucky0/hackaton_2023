@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../cubits/route_creation_cubit.dart';
+import '../main.dart';
 import 'route_send.dart';
 
 class RouteCreation extends StatelessWidget {
@@ -34,6 +36,7 @@ class RouteCreation extends StatelessWidget {
                 child: [
                   _formRoute(context, scrollController, state),
                   _pointsList(context, scrollController, state),
+                  _formPlace(context, scrollController, state),
                 ].toList()[state.tab],
               );
             },
@@ -52,7 +55,11 @@ class RouteCreation extends StatelessWidget {
           controller: scrollController,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 50, left: 20, right: 20),
+              padding: EdgeInsets.only(
+                top: 56,
+                left: 20,
+                right: 20,
+              ),
               child: Text(
                 "Stwórz nową trasę",
                 style: TextStyle(
@@ -95,17 +102,21 @@ class RouteCreation extends StatelessWidget {
               padding: const EdgeInsets.only(
                 left: 20,
                 right: 20,
-                top: 10,
+                top: 16,
               ),
               child: GestureDetector(
                 onTap: () => cubit.getFile(),
                 child: Container(
                   height: 200,
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.black12,
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: FileImage(File(state.file?.path ?? '')),
+                    ),
+                    border: Border.all(
+                      color: Colors.black26,
+                      width: 1,
                     ),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(5),
@@ -114,7 +125,7 @@ class RouteCreation extends StatelessWidget {
                   child: const Icon(
                     MdiIcons.camera,
                     size: 80,
-                    color: Colors.black38,
+                    color: Colors.black26,
                   ),
                 ),
               ),
@@ -248,19 +259,22 @@ class RouteCreation extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Dodaj nowe miejsce",
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                          ],
+                      child: GestureDetector(
+                        onTap: () => cubit.setTab(2),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Dodaj nowe miejsce",
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -364,6 +378,192 @@ class RouteCreation extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _formPlace(BuildContext context, ScrollController scrollController,
+      RouteCreationState state) {
+    final cubit = context.read<RouteCreationCubit>();
+    return Stack(
+      children: [
+        ListView(
+          controller: scrollController,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 50,
+                    left: 20,
+                    right: 2,
+                  ),
+                  child: IconButton(
+                    onPressed: () => cubit.setTab(1),
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      size: 30,
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: 50,
+                  ),
+                  child: Text(
+                    "Dodaj nowe miejsce",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Nazwa trasy",
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 15,
+                    ),
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      minLines: 7,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        alignLabelWithHint: true,
+                        border: OutlineInputBorder(),
+                        labelText: "Opis trasy",
+                        labelStyle: TextStyle(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 16,
+              ),
+              child: GestureDetector(
+                onTap: () => cubit.getFile(),
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: FileImage(File(state.file?.path ?? '')),
+                    ),
+                    border: Border.all(
+                      color: Colors.black26,
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  child: const Icon(
+                    MdiIcons.camera,
+                    size: 80,
+                    color: Colors.black26,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 16,
+              ),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: 200,
+                    width: double.infinity,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black26,
+                          width: 1,
+                        ),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: MapboxMap(
+                        accessToken: mapsAccessToken,
+                        initialCameraPosition: const CameraPosition(
+                          target: LatLng(50.061, 19.937),
+                          zoom: 14.0,
+                        ),
+                        attributionButtonPosition:
+                            AttributionButtonPosition.BottomRight,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 65,
+                    left: MediaQuery.of(context).size.width / 2 - 30 - 20,
+                    child: Image.asset(
+                      "assets/pin.png",
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 100),
+          ],
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+              bottom: 20,
+            ),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.all(15),
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                cubit.setTab(1);
+              },
+              child: const Text(
+                "Dodaj",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
