@@ -47,99 +47,110 @@ class RouteCreation extends StatelessWidget {
   Widget _formRoute(BuildContext context, ScrollController scrollController,
       RouteCreationState state) {
     final cubit = context.read<RouteCreationCubit>();
-    return ListView(
-      controller: scrollController,
+    return Stack(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 50, left: 20, right: 20),
-          child: Text(
-            "Stwórz nową trasę",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Route title",
+        ListView(
+          controller: scrollController,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 50, left: 20, right: 20),
+              child: Text(
+                "Stwórz nową trasę",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 15,
-                ),
-                child: TextField(
-                  keyboardType: TextInputType.multiline,
-                  minLines: 7,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    alignLabelWithHint: true,
-                    border: OutlineInputBorder(),
-                    labelText: "Route Description",
-                    labelStyle: TextStyle(),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Nazwa trasy",
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 15,
+                    ),
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      minLines: 7,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        alignLabelWithHint: true,
+                        border: OutlineInputBorder(),
+                        labelText: "Opis trasy",
+                        labelStyle: TextStyle(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10,
+              ),
+              child: GestureDetector(
+                onTap: () => cubit.getFile(),
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: FileImage(File(state.file?.path ?? '')),
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  child: const Icon(
+                    MdiIcons.camera,
+                    size: 80,
+                    color: Colors.black38,
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 10,
-          ),
-          child: GestureDetector(
-            onTap: () => cubit.getFile(),
-            child: Container(
-              height: 200,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: FileImage(File(state.file?.path ?? '')),
-                ),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: const Icon(
-                MdiIcons.camera,
-                size: 80,
-                color: Colors.black38,
-              ),
             ),
-          ),
+          ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 10,
-          ),
-          child: ElevatedButton(
-            style: ButtonStyle(
-              padding: MaterialStateProperty.all<EdgeInsets>(
-                EdgeInsets.all(15),
-              ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+              bottom: 20,
+            ),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.all(15),
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                 ),
               ),
-            ),
-            onPressed: () => cubit.setTab(1),
-            child: const Text(
-              "Następny krok",
-              style: TextStyle(
-                fontSize: 18,
+              onPressed: () {
+                cubit.setTab(1);
+              },
+              child: const Text(
+                "Następny krok",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
               ),
             ),
           ),
@@ -159,46 +170,31 @@ class RouteCreation extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(bottom: 30),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 50,
                       left: 20,
-                      right: 20,
+                      right: 2,
+                    ),
+                    child: IconButton(
+                      onPressed: () => cubit.setTab(0),
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      top: 50,
                     ),
                     child: Text(
                       "Dodaj miejsca",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 50,
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.all(15),
-                        ),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
-                      onPressed: () => cubit.setTab(0),
-                      child: const Text(
-                        "Wróć",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
                       ),
                     ),
                   ),
@@ -212,9 +208,9 @@ class RouteCreation extends StatelessWidget {
               itemBuilder: (context, index) {
                 return _placeCard(
                   context,
-                  'Sample point',
-                  'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                  'https://picsum.photos/500/500?random=$index',
+                  'Bazylika Mariacka',
+                  'Rzymskokatolicka bazylika z rzeźbionym ołtarzem i gotycką wieżą...',
+                  'https://lh3.googleusercontent.com/gps-proxy/ALm4wwkXSlNKl7pHIIyV3Hg6HBFtaFH7Pz8xLrCSx-ivjXwFwRToSXTtT0xB6alU3KyXOVBUe2dyjfLc6ds27Ooqzc_cNPZZivxdwOtOX3KsN57pAzUqFY7vfLOECnl16UWTIm1yC_nuG_Stt1Y0uL6gj3-Gk5bZrWjKv7wNsevdfyDUf1qJm0ZtRolF=w408-h271-k-no',
                 );
               },
             ),

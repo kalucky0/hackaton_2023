@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:hackaton/widgets/add_comment.dart';
 import 'package:hackaton/widgets/comment.dart';
 
@@ -27,7 +28,12 @@ class PlaceScreen extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Image.network('https://picsum.photos/1280/720'),
+                  Image.network(
+                    'https://lh3.googleusercontent.com/gps-proxy/ALm4wwkXSlNKl7pHIIyV3Hg6HBFtaFH7Pz8xLrCSx-ivjXwFwRToSXTtT0xB6alU3KyXOVBUe2dyjfLc6ds27Ooqzc_cNPZZivxdwOtOX3KsN57pAzUqFY7vfLOECnl16UWTIm1yC_nuG_Stt1Y0uL6gj3-Gk5bZrWjKv7wNsevdfyDUf1qJm0ZtRolF=w408-h271-k-no',
+                    fit: BoxFit.cover,
+                    height: 250,
+                    width: double.infinity,
+                  ),
                   Positioned.fill(
                     child: Container(
                       decoration: const BoxDecoration(
@@ -46,12 +52,9 @@ class PlaceScreen extends StatelessWidget {
                   const Positioned(
                     bottom: 20,
                     child: Padding(
-                      padding: EdgeInsets.only(
-                        left: 10,
-                        right: 10
-                      ),
+                      padding: EdgeInsets.only(left: 10, right: 10),
                       child: Text(
-                        "Sample text",
+                        "Bazylika Mariacka",
                         overflow: TextOverflow.fade,
                         maxLines: 1,
                         softWrap: false,
@@ -66,7 +69,7 @@ class PlaceScreen extends StatelessWidget {
                   Positioned(
                     child: Center(
                       child: Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 12,
                         ),
                         child: Container(
@@ -82,19 +85,22 @@ class PlaceScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eros ipsum, sollicitudin vitae felis eget, fringilla ornare libero. Sed laoreet ut ligula nec fermentum. Quisque egestas, risus vitae iaculis ultricies, nibh tortor auctor lectus, non congue lorem orci ac nulla. Maecenas mollis faucibus est, tincidunt vehicula massa tincidunt a. Cras eu ipsum ac elit pulvinar sagittis non nec nisl. Etiam augue tortor, imperdiet et scelerisque id, sagittis et ipsum. Vestibulum non venenatis enim, quis fermentum lacus. Vivamus accumsan justo a tincidunt consectetur. Nulla velit libero, faucibus nec sagittis sed, interdum sit amet lacus. Curabitur faucibus iaculis posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lacinia malesuada rutrum.",
-                  style: TextStyle(
-                    fontSize: 15
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Html(
+                  data:
+                      "Zabytkowy, rzymskokatolicki kościół parafialny, znajdujący się w Krakowie, w dzielnicy I, na Starym Mieście, na placu Mariackim, przy północno-wschodnim narożniku Rynku Głównego."
+                      " Od 1962 roku posiada tytuł bazyliki mniejszej.<br/><br/>Świątynia jest gotycką, trójnawową, orientowaną bazyliką."
+                      "<br/><br/><b>Historia</b><br/><br/>"
+                      "Według Jana Długosza pierwszy murowany kościół w stylu romańskim został ufundowany przez biskupa krakowskiego Iwona Odrowąża w latach 1221–1222 na miejscu pierwotnej drewnianej świątyni. Wkrótce jednak budowlę zniszczono podczas najazdów tatarskich.<br/><br/>"
+                      "W latach 1290–1300 wzniesiono, częściowo na poprzednich fundamentach, wczesnogotycki kościół halowy, który konsekrowano około roku 1320–1321. Prace jednak kontynuowane były jeszcze w trzeciej dekadzie czternastego stulecia.<br/><br/>"
+                      "W latach 1355–1365, dzięki fundacji Mikołaja Wierzynka (mieszczanina krakowskiego i stolnika sandomierskiego), wzniesiono obecne prezbiterium.<br/><br/>"
+                      "Z kolei w latach 1392–1397 polecono mistrzowi Mikołajowi Wernerowi lepsze doświetlenie kościoła. Budowniczy obniżył mury naw bocznych, a w murach magistralnych wprowadził duże otwory okienne. W ten sposób halowy układ świątyni zmienił się na bazylikowy.<br/><br/>",
                 ),
               ),
-              AddComment(),
+              const AddComment(),
               UserComment(),
               UserComment(),
-
             ],
           ),
         );
