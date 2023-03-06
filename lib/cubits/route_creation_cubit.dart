@@ -15,9 +15,23 @@ class RouteCreationCubit extends Cubit<RouteCreationState> {
     final XFile? image =
         await imagePicker.pickImage(source: ImageSource.gallery);
     if (image != null) {
-      emit(RouteCreationImageLoaded(image));
+      emit(RouteCreationImageLoaded(state.tab, image, state.placesImages));
     }
   }
 
-  void setTab(int tab) => emit(ProfileTabChanged(tab, state.file));
+  void getPlaceFile(int index) async {
+    final XFile? image =
+        await imagePicker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      Map<int, XFile?> images = Map.of(state.placesImages);
+      images[index] = image;
+      emit(RouteCreationImageLoaded(state.tab, state.image, images));
+    }
+  }
+
+  void setTab(int tab) => emit(ProfileTabChanged(
+        tab,
+        state.image,
+        state.placesImages,
+      ));
 }

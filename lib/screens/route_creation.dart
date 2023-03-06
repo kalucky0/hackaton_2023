@@ -112,7 +112,7 @@ class RouteCreation extends StatelessWidget {
                     color: Colors.black12,
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: FileImage(File(state.file?.path ?? '')),
+                      image: FileImage(File(state.image?.path ?? '')),
                     ),
                     border: Border.all(
                       color: Colors.black26,
@@ -261,11 +261,12 @@ class RouteCreation extends StatelessWidget {
                     Expanded(
                       child: GestureDetector(
                         onTap: () => cubit.setTab(2),
-                        child: Padding(
+                        child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 20,
                             vertical: 10,
                           ),
+                          color: Colors.white,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -457,14 +458,18 @@ class RouteCreation extends StatelessWidget {
                 top: 16,
               ),
               child: GestureDetector(
-                onTap: () => cubit.getFile(),
+                onTap: () => cubit.getPlaceFile(0),
                 child: Container(
                   height: 200,
                   decoration: BoxDecoration(
                     color: Colors.black12,
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: FileImage(File(state.file?.path ?? '')),
+                      image: FileImage(
+                        File(state.placesImages.isNotEmpty
+                            ? state.placesImages[0]?.path ?? ''
+                            : ''),
+                      ),
                     ),
                     border: Border.all(
                       color: Colors.black26,
