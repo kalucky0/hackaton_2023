@@ -96,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border(
                               right: BorderSide(
-                                color:  Colors.grey.withOpacity(0.2),
+                                color: Colors.grey.withOpacity(0.2),
                                 width: 1,
                               ),
                             ),
@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border(
                               right: BorderSide(
-                                color:  Colors.grey.withOpacity(0.2),
+                                color: Colors.grey.withOpacity(0.2),
                                 width: 1,
                               ),
                             ),
@@ -155,14 +155,9 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     height: 1,
                   ),
-                  IndexedStack(
-                    index: state.tab,
-                    children: const [
-                      VisitedTab(),
-                      ProfileTab(),
-                      AchievementsTab(),
-                    ],
-                  ),
+                  if (state.tab == 0) const VisitedTab(),
+                  if (state.tab == 1) const ProfileTab(),
+                  if (state.tab == 2) const AchievementsTab(),
                 ],
               );
             }),
