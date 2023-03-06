@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:hackaton/widgets/add_comment.dart';
-import 'package:hackaton/widgets/comment.dart';
+
+import '../widgets/add_comment.dart';
+import '../widgets/comment.dart';
 
 class PlaceScreen extends StatelessWidget {
   final String name;

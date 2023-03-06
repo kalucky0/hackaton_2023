@@ -55,19 +55,13 @@ class HomeScreen extends StatelessWidget {
     ),
   ];
 
-  static const points = [
-    LatLng(50.086721, 19.994021),
-    LatLng(50.085388, 19.997405),
-    LatLng(50.083779, 19.995888),
-    LatLng(50.082190, 19.997223),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeCubit(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
+          final cubit = context.read<HomeCubit>();
           return Scaffold(
             body: Stack(
               children: [
@@ -82,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                         AttributionButtonPosition.BottomRight,
                     attributionButtonMargins: const Point(30, 40),
                     logoViewMargins: const Point(30, 40),
-                    onMapCreated: (c) => onMapCreated(c),
+                    onMapCreated: (c) => cubit.onMapCreated(c),
                   ),
                 ),
                 Positioned(
@@ -239,87 +233,5 @@ class HomeScreen extends StatelessWidget {
         },
       ),
     );
-  }
-
-  Future<void> onMapCreated(MapboxMapController controller) async {
-    {
-      final ByteData bytes = await rootBundle.load("assets/pin.png");
-      final Uint8List list = bytes.buffer.asUint8List();
-      await controller.addImage("pin", list);
-    }
-    {
-      final ByteData bytes = await rootBundle.load("assets/pin_gray.png");
-      final Uint8List list = bytes.buffer.asUint8List();
-      await controller.addImage("pin_gray", list);
-    }
-    {
-      final ByteData bytes = await rootBundle.load("assets/dot.png");
-      final Uint8List list = bytes.buffer.asUint8List();
-      await controller.addImage("dot", list);
-    }
-
-    int i = 0;
-    for (final point in points) {
-      i++;
-      controller.addSymbol(
-        SymbolOptions(
-          geometry: point,
-          iconImage: i > 2 ? 'pin' : 'pin_gray',
-          iconSize: 0.33,
-          iconOffset: const Offset(0, -50),
-        ),
-      );
-    }
-
-    controller.addLine(
-      const LineOptions(
-        geometry: points,
-        lineWidth: 3,
-        linePattern: 'dot',
-        lineOpacity: .33,
-      ),
-    );
-
-    final position = await Geolocator.getCurrentPosition();
-    final marker = await controller.addCircle(
-      CircleOptions(
-        circleRadius: 6,
-        circleColor: '#3197ed',
-        circleStrokeColor: '#3197ed',
-        circleStrokeOpacity: .5,
-        circleStrokeWidth: 2,
-        geometry: LatLng(position.latitude, position.longitude),
-      ),
-    );
-
-    controller.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: LatLng(position.latitude, position.longitude),
-          zoom: 15.0,
-        ),
-      ),
-    );
-
-    Timer.periodic(const Duration(seconds: 10), (timer) async {
-      final position = await Geolocator.getCurrentPosition();
-      controller.updateCircle(
-        marker,
-        CircleOptions(
-          circleRadius: 6,
-          circleColor: '#3197ed',
-          circleStrokeColor: '#3197ed',
-          circleStrokeOpacity: .5,
-          circleStrokeWidth: 2,
-          geometry: LatLng(position.latitude, position.longitude),
-        ),
-      );
-
-      controller.animateCamera(
-        CameraUpdate.newLatLng(
-          LatLng(position.latitude, position.longitude),
-        ),
-      );
-    });
   }
 }

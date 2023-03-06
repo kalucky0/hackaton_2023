@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hackaton/screens/place.dart';
 import 'package:lottie/lottie.dart';
 
 import '../cubits/scanned_cubit.dart';
+import 'place.dart';
 
 class ScannedScreen extends StatelessWidget {
   const ScannedScreen({Key? key}) : super(key: key);

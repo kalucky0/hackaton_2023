@@ -2,11 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hackaton/cubits/profile_cubit.dart';
-import 'package:hackaton/widgets/achievements_tab.dart';
-import 'package:hackaton/widgets/profile_tab.dart';
-import 'package:hackaton/widgets/visited_tab.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../cubits/profile_cubit.dart';
+import '../widgets/achievements_tab.dart';
+import '../widgets/profile_tab.dart';
+import '../widgets/visited_tab.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String username;
@@ -128,7 +129,9 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
-                                color: state.tab == 0 ? Colors.grey.withOpacity(0.25) : Colors.transparent,
+                                color: state.tab == 0
+                                    ? Colors.grey.withOpacity(0.25)
+                                    : Colors.transparent,
                                 width: 3,
                               ),
                             ),
@@ -151,7 +154,9 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
-                                color: state.tab == 1 ? Colors.grey.withOpacity(0.25) : Colors.transparent,
+                                color: state.tab == 1
+                                    ? Colors.grey.withOpacity(0.25)
+                                    : Colors.transparent,
                                 width: 3,
                               ),
                             ),
@@ -174,7 +179,9 @@ class ProfileScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
-                                color: state.tab == 2 ? Colors.grey.withOpacity(0.25) : Colors.transparent,
+                                color: state.tab == 2
+                                    ? Colors.grey.withOpacity(0.25)
+                                    : Colors.transparent,
                                 width: 3,
                               ),
                             ),

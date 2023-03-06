@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hackaton/cubits/route_send_cubit.dart';
 import 'package:lottie/lottie.dart';
+
+import '../cubits/route_send_cubit.dart';
 
 class RouteSend extends StatelessWidget {
   const RouteSend({Key? key}) : super(key: key);
