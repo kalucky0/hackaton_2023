@@ -49,7 +49,9 @@ class HomeCubit extends Cubit<HomeState> {
       ),
     );
 
-    final marker = await controller.addCircle(const CircleOptions());
+    final marker = await controller.addCircle(const CircleOptions(
+      geometry: LatLng(0, 0),
+    ));
     _updateLocationMarker(controller, marker);
 
     Timer.periodic(const Duration(seconds: 10), (timer) async {
