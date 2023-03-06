@@ -94,9 +94,9 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            const Text(
-                              "Andrzej",
-                              style: TextStyle(
+                            Text(
+                              username,
+                              style: const TextStyle(
                                 fontSize: 22,
                                 color: Colors.white,
                               ),
