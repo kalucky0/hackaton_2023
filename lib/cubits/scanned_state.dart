@@ -1,11 +1,13 @@
 part of 'scanned_cubit.dart';
 
 abstract class ScannedState {
-  const ScannedState(this.counter);
-
-  final int counter;
+  const ScannedState();
 }
 
 class ScannedInitial extends ScannedState {
-  const ScannedInitial(int counter) : super(counter);
+  const ScannedInitial() : super();
+}
+
+class ScannedExit extends ScannedState {
+  const ScannedExit() : super();
 }
