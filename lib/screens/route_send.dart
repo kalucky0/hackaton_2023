@@ -12,30 +12,33 @@ class RouteSend extends StatelessWidget {
       backgroundColor: Colors.white54,
       body: BlocProvider(
         create: (context) => RouteSendStateCubit(),
-        child: BlocListener<RouteSendStateCubit, RouteSendState>(
+        child: BlocConsumer<RouteSendStateCubit, RouteSendState>(
           listener: (context, state) {
-              Navigator.pop(context);
+            if (state is RouteSendExit) Navigator.pop(context);
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Lottie.asset(
-                'assets/checkmark.json',
-                repeat: false,
-                height: 300,
-              ),
-              Text(
-                'Wysłano do akceptacji',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black.withOpacity(.68),
-                  fontWeight: FontWeight.bold,
+          builder: (context, state) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Lottie.asset(
+                  'assets/blue-checkmark.json',
+                  repeat: false,
+                  height: 300,
+                  animate: state.animate,
                 ),
-              ),
-            ],
-          ),
+                Text(
+                  'Wysłano do akceptacji',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.black.withOpacity(.68),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

@@ -14,7 +14,7 @@ class ScannedScreen extends StatelessWidget {
       backgroundColor: Colors.white54,
       body: BlocProvider(
         create: (context) => ScannedCubit(),
-        child: BlocListener<ScannedCubit, ScannedState>(
+        child: BlocConsumer<ScannedCubit, ScannedState>(
           listener: (context, state) {
             if (state is ScannedExit) {
               Navigator.pop(context);
@@ -29,26 +29,29 @@ class ScannedScreen extends StatelessWidget {
               );
             }
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Lottie.asset(
-                'assets/checkmark.json',
-                repeat: false,
-                height: 300,
-              ),
-              Text(
-                '+10 points',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 38,
-                  color: Colors.black.withOpacity(.68),
-                  fontWeight: FontWeight.bold,
+          builder: (context, state) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Lottie.asset(
+                  'assets/checkmark.json',
+                  repeat: false,
+                  height: 300,
+                  animate: state.animate,
                 ),
-              ),
-            ],
-          ),
+                Text(
+                  '+10 points',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 38,
+                    color: Colors.black.withOpacity(.68),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
