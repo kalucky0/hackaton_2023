@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             child: BlocBuilder<ProfileCubit, ProfileState>(
                 builder: (context, state) {
-                  final cubit = context.read<ProfileCubit>();
+              final cubit = context.read<ProfileCubit>();
               return ListView(
                 controller: scrollController,
                 children: [
@@ -93,10 +93,10 @@ class ProfileScreen extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           width: MediaQuery.of(context).size.width / 3,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             border: Border(
                               right: BorderSide(
-                                color: Colors.black12,
+                                color:  Colors.grey.withOpacity(0.2),
                                 width: 1,
                               ),
                             ),
@@ -116,10 +116,10 @@ class ProfileScreen extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           width: MediaQuery.of(context).size.width / 3,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             border: Border(
                               right: BorderSide(
-                                color: Colors.black12,
+                                color:  Colors.grey.withOpacity(0.2),
                                 width: 1,
                               ),
                             ),
@@ -152,9 +152,10 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    color: Colors.black12,
+                    color: Colors.grey.withOpacity(0.2),
                     height: 1,
                   ),
+                  const SizedBox(height: 16),
                   IndexedStack(
                     index: state.tab,
                     children: const [
