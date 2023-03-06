@@ -102,16 +102,16 @@ class HomeScreen extends StatelessWidget {
                     height: 50,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           MdiIcons.qrcodeScan,
-                          color: Colors.black54,
+                          color: Colors.black.withOpacity(.65),
                         ),
-                        SizedBox(width: 15),
+                        const SizedBox(width: 15),
                         Text(
                           'Skanuj',
                           style: TextStyle(
-                            color: Colors.black54,
+                            color: Colors.black.withOpacity(.65),
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -150,7 +150,7 @@ class HomeScreen extends StatelessWidget {
                                     category.icon,
                                     color: index == state.selectedChip
                                         ? Colors.white
-                                        : Colors.black.withOpacity(.6),
+                                        : Colors.black.withOpacity(.65),
                                     size: 20,
                                   ),
                                   const SizedBox(width: 5),
@@ -159,7 +159,7 @@ class HomeScreen extends StatelessWidget {
                                     style: TextStyle(
                                       color: index == state.selectedChip
                                           ? Colors.white
-                                          : Colors.black.withOpacity(.6),
+                                          : Colors.black.withOpacity(.65),
                                       fontWeight: index == state.selectedChip
                                           ? FontWeight.w600
                                           : FontWeight.w400,
@@ -168,7 +168,7 @@ class HomeScreen extends StatelessWidget {
                                 ],
                               ),
                               // backgroundColor: Colors.white,
-                              elevation: 2,
+                              elevation: 4,
                               shadowColor: Colors.black,
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 10,
@@ -199,9 +199,9 @@ class HomeScreen extends StatelessWidget {
                     },
                     width: 45,
                     height: 45,
-                    child: const Icon(
+                    child: Icon(
                       MdiIcons.plus,
-                      color: Colors.black54,
+                      color: Colors.black.withOpacity(.65),
                     ),
                   ),
                 ),
@@ -227,9 +227,9 @@ class HomeScreen extends StatelessWidget {
                         },
                       );
                     },
-                    child: const Icon(
+                    child: Icon(
                       MdiIcons.accountOutline,
-                      color: Colors.black54,
+                      color: Colors.black.withOpacity(.65),
                     ),
                   ),
                 ),
