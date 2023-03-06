@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hackaton/cubits/route_creation_cubit.dart';
-import 'package:hackaton/screens/route_send.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../cubits/route_creation_cubit.dart';
+import 'route_send.dart';
 
 class RouteCreation extends StatelessWidget {
   const RouteCreation({Key? key}) : super(key: key);
@@ -22,7 +22,6 @@ class RouteCreation extends StatelessWidget {
           create: (context) => RouteCreationCubit(),
           child: BlocBuilder<RouteCreationCubit, RouteCreationState>(
             builder: (context, state) {
-              final cubit = context.read<RouteCreationCubit>();
               return Container(
                 clipBehavior: Clip.antiAlias,
                 decoration: const BoxDecoration(
@@ -284,7 +283,7 @@ class RouteCreation extends StatelessWidget {
             child: ElevatedButton(
               style: ButtonStyle(
                 padding: MaterialStateProperty.all<EdgeInsets>(
-                  EdgeInsets.all(15),
+                  const EdgeInsets.all(15),
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(

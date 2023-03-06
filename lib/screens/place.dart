@@ -99,8 +99,8 @@ class PlaceScreen extends StatelessWidget {
                 ),
               ),
               const AddComment(),
-              UserComment(),
-              UserComment(),
+              const UserComment(),
+              const UserComment(),
             ],
           ),
         );

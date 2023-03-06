@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hackaton/screens/camera.dart';
-import 'package:hackaton/screens/place.dart';
-import 'package:hackaton/screens/profile.dart';
-import 'package:hackaton/screens/route_creation.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../cubits/home_cubit.dart';
 import '../main.dart';
 import '../widgets/button.dart';
+import 'camera.dart';
+import 'profile.dart';
+import 'route_creation.dart';
 
 class Category {
   final String name;
@@ -68,7 +67,6 @@ class HomeScreen extends StatelessWidget {
       create: (context) => HomeCubit(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          final cubit = context.read<HomeCubit>();
           return Scaffold(
             body: Stack(
               children: [
