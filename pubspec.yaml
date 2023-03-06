@@ -13,6 +13,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   mapbox_gl: ^0.16.0
   flutter_html: ^2.2.1
+  camera: ^0.10.3+2
   material_design_icons_flutter: ^6.0.7096
   geolocator: ^9.0.2
   flutter:

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hackaton/screens/camera.dart';
 import 'package:hackaton/screens/place.dart';
 import 'package:hackaton/screens/profile.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
@@ -43,15 +44,21 @@ class HomeScreen extends StatelessWidget {
                   left: 20,
                   child: Button(
                     onTap: () {
-                      showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        barrierColor: Colors.transparent,
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const PlaceScreen();
-                        },
-                      );
+                      // showModalBottomSheet(
+                      //   isScrollControlled: true,
+                      //   backgroundColor: Colors.transparent,
+                      //   barrierColor: Colors.transparent,
+                      //   context: context,
+                      //   builder: (BuildContext context) {
+                          // return const PlaceScreen();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CameraScreen(),
+                            ),
+                          );
+                        // },
+                      // );
                     },
                     width: MediaQuery.of(context).size.width - 40,
                     height: 50,

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'app.dart';
 
 const mapsAccessToken = "sk.eyJ1Ijoia2FsdWNraTIzIiwiYSI6ImNsZXZxengyMTA3OTMzc3M4aXI3NXFleGcifQ.p8V-DXsY-s8llJYqftaZiA";
+late List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await determinePosition();
+  cameras = await availableCameras();
   runApp(const App());
 }
 
