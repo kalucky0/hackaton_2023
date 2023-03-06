@@ -155,7 +155,6 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     height: 1,
                   ),
-                  const SizedBox(height: 16),
                   IndexedStack(
                     index: state.tab,
                     children: const [

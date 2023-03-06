@@ -6,6 +6,7 @@ class VisitedTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(top: 16),
       color: const Color(0xFFFAFAFA),
       child: ListView.builder(
         itemCount: 10,
