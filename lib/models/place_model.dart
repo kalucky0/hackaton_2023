@@ -1,4 +1,3 @@
-
 class PlaceModel {
   final String name;
   final String description;

@@ -115,6 +115,7 @@ class ProfileScreen extends StatelessWidget {
                           child: IconButton(
                             icon: const Icon(MdiIcons.pencilOutline),
                             color: Colors.white,
+                            iconSize: 30,
                             onPressed: () {
                               showDialog(
                                 context: context,
@@ -125,6 +126,18 @@ class ProfileScreen extends StatelessWidget {
                             },
                           ),
                         ),
+                      Positioned(
+                        top: 30,
+                        left: 15,
+                        child: IconButton(
+                          icon: const Icon(MdiIcons.close),
+                          iconSize: 30,
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 2),
