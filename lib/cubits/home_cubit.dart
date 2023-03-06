@@ -12,14 +12,19 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeInitial());
 
   static const _points = [
-    LatLng(50.086721, 19.994021),
-    LatLng(50.085388, 19.997405),
-    LatLng(50.083779, 19.995888),
-    LatLng(50.082190, 19.997223),
+    [
+      LatLng(50.082190, 19.997223),
+      LatLng(50.083779, 19.995888),
+      LatLng(50.085388, 19.997405),
+      LatLng(50.086721, 19.994021),
+    ],
+    [
+      LatLng(50.090388, 19.997405),
+    ]
   ];
 
   void setChip(int index) {
-    emit(HomeUpdate(index));
+    emit(HomeUpdate(index, state.selectedRoute));
   }
 
   Future<void> onMapCreated(MapboxMapController controller) async {
@@ -27,27 +32,32 @@ class HomeCubit extends Cubit<HomeState> {
     await _loadSprite(controller, 'pin_gray');
     await _loadSprite(controller, 'dot');
 
-    int i = 0;
-    for (final point in _points) {
-      i++;
-      controller.addSymbol(
-        SymbolOptions(
-          geometry: point,
-          iconImage: i > 2 ? 'pin' : 'pin_gray',
-          iconSize: 0.33,
-          iconOffset: const Offset(0, -50),
+    for (final points in _points) {
+      int i = 0;
+      for (final point in points) {
+        i++;
+        controller.addSymbol(
+          SymbolOptions(
+            geometry: point,
+            iconImage: i <= 2 ? 'pin' : 'pin_gray',
+            iconSize: 0.33,
+            iconOffset: const Offset(0, -50),
+          ),
+          {
+            'index': _points.indexOf(points),
+          },
+        );
+      }
+
+      controller.addLine(
+        LineOptions(
+          geometry: points,
+          lineWidth: 3,
+          linePattern: 'dot',
+          lineOpacity: .33,
         ),
       );
     }
-
-    controller.addLine(
-      const LineOptions(
-        geometry: _points,
-        lineWidth: 3,
-        linePattern: 'dot',
-        lineOpacity: .33,
-      ),
-    );
 
     final marker = await controller.addCircle(const CircleOptions(
       geometry: LatLng(0, 0),
